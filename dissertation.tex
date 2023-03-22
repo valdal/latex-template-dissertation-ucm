@@ -1,0 +1,166 @@
+% UC Merced  PhD Dissertation Template
+% (UCSD Mathematics Dissertation Template is modified according to the UC Merced guidelines by Lasith Adhikari. Not responsible for any issues regarding modifications. You are welcome to add/update if there is any missing requirernment)
+%
+% Please read the comments in this file and make appropriate edits.
+% NOTE: Always refer to the ``Preperation and Submission Manual for 
+% Doctoral Dissertations and Masters Theses for 20**'', where 20** is 
+% the year of your graduation, for officiation preparations guidelines.
+%
+% If you desire more control, please see the attached files:
+%   * ucsd.cls -- Class file
+%   * uct10.clo, uct11.clo, uct12.clo -- Configuration files for font sizes 10pt,11pt,12pt
+%
+% CHANGELOG:
+%   * Original file adapted from brockman.tex by JRB and RMR
+%     to work with ucsd.cls
+
+
+\documentclass[11pt,oneside,chapterheads]{UCMerced}
+% documentclass options: default is 11pt, oneside, final.
+% fonts: 10pt, 11pt, 12pt -- are valid for UCSD dissertations (now UC Merced).
+% sides: oneside, twoside -- note that two-sided theses are not accepted by OGS
+% mode: draft, final -- draft mode switches to single spacing, removes hyperlinks,
+%                       and places a black box at every overfull hbox (check these before submission).
+% chapterheads -- include this if you want your chapters to read:
+% Chapter 1
+% Title of Chapter
+%
+% instead of
+%
+% 1 Title of Chapter
+
+
+% Include all packages you need here.  Some standard options are suggested below.
+
+% GEOMETRY - This will force the use of Letter paper.
+% Many TeX installations default to A4 paper.  The formatting
+% of the thesis class file requires Letter, else the margins
+% will be wrong when you go to print it (and OGS will complain).
+% If your TeX implementation is not setup for Letter paper, and
+% you cannot change it, uncommenting the following line may fix 
+% problem.
+% \usepackage[paper=letterpaper]{geometry}
+
+\usepackage{graphicx}
+
+%% AMS PACKAGES - Chances are you will want some or all of these if writing a math dissertation.
+\usepackage{amsmath, amscd, amssymb, amsthm}
+\usepackage{multicol}
+\usepackage{tabulary}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{pgfplots}
+\usepackage{longtable}
+\usepackage{url}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[Lenny]{fncychap}
+\usepackage{pdfpages}
+\usepackage{graphbox}
+
+%% LATIN MODERN FONTS (replacements for Computer Modern)
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage{url}
+\usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=black, citecolor=black, urlcolor=black,plainpages=false,pdfpagelabels]{hyperref}
+\usepackage{cleveref}
+\usepackage[backend=biber,style=apa,sortcites=false,minnames=1,maxnames=3,maxbibnames=4]{biblatex}
+\makeatletter
+\DeclareCiteCommand{\fullcite}
+{\defcounter{maxnames}{\blx@maxbibnames}%
+\usebibmacro{prenote}}
+{\usedriver
+{\DeclareNameAlias{sortname}{default}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+\DeclareCiteCommand{\footfullcite}[\mkbibfootnote]
+{\defcounter{maxnames}{\blx@maxbibnames}%
+\usebibmacro{prenote}}
+{\usedriver
+{\DeclareNameAlias{sortname}{default}}
+{\thefield{entrytype}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+\makeatother
+
+\addbibresource{references.bib}
+\let\cite\parencite
+
+\theoremstyle{plain}% default
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\begin{document}
+
+\title{<DISSERTATION TITLE>}
+\author{<AUTHOR>}
+\degreeyear{<YEAR>}
+\degree{Doctor of Philosophy}  
+\field{Applied Mathematics}
+
+\numberofmembers{5} % |chair|  + |othermembers| (do not count co-chair) % change here
+\chair{<COMMITTEE CHAIR>}
+\memberone{<COMMITTEE MEMBER 1>}
+\membertwo{<COMMITTEE MEMBER 2>}
+\memberthree{<COMMITTEE MEMBER 3>}
+\memberfour{<COMMITTEE MEMBER 4>}
+
+\begin{frontmatter}
+\makefrontmatter % The title, copyright, and signature pages.
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%% ACKNOWLEDGEMENTS
+\begin{acknowledgements} 
+    \input{0_acknowledgements.tex}
+\end{acknowledgements}
+
+%% Vita
+{
+\phantomsection
+\addcontentsline{toc}{chapter}{\protect\numberline{}Curriculum Vitae}%
+\includepdf[pages=1-,pagecommand={\thispagestyle{preliminary}}]{cv/cv.pdf}
+} 
+
+%% Abstract
+\begin{abstract}  
+    \input{0_abstract.tex}
+\end{abstract}
+
+\end{frontmatter}
+
+%%% DISSERTATION
+\chapter{Introduction}
+\label{ch:intro}
+\input{1_introduction.tex}
+
+\chapter{Chapter 2}
+\input{2_chap2.tex}
+
+%% Add more chapters here if necessary
+
+\chapter{Conclusion and future work}
+\label{ch:conclusion}
+\input{3_conclusion.tex} 
+
+%% BIBLIOGRAPHY
+\addcontentsline{toc}{chapter}{Bibliography}
+\printbibliography
+
+%% APPENDIX
+\appendix
+\chapter{Appendix for chap 2}
+\input{2_chap2_appendix.tex}
+
+\end{document}
+
